@@ -445,7 +445,13 @@ EOF
 
 	# Install required programs and kernel now, in order to
 	# prevent emerging module before an imminent kernel upgrade
-	try emerge --verbose sys-kernel/dracut sys-kernel/gentoo-kernel-bin app-arch/zstd
+	if [[ "${KERNEL_TYPE:-bin}" == "source" ]]; then
+		einfo "Building kernel from source (sys-kernel/gentoo-kernel)"
+		try emerge --verbose sys-kernel/dracut sys-kernel/gentoo-kernel app-arch/zstd
+	else
+		einfo "Installing binary kernel (sys-kernel/gentoo-kernel-bin)"
+		try emerge --verbose sys-kernel/dracut sys-kernel/gentoo-kernel-bin app-arch/zstd
+	fi
 
 	# Install cryptsetup if we used LUKS
 	if [[ $USED_LUKS == "true" ]]; then

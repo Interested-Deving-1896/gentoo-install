@@ -301,6 +301,11 @@ ENABLE_SSHD=true
 # Enable binary portage packages where available
 ENABLE_BINPKG=false
 
+# Kernel type to install:
+#   "bin"    - Install pre-built binary kernel (sys-kernel/gentoo-kernel-bin) [default]
+#   "source" - Build kernel from source (sys-kernel/gentoo-kernel)
+KERNEL_TYPE=bin
+
 # An ssh key to add to the authorized_keys file for the root user.
 # This variable will become the content of the authorized_keys file,
 # so you may specify one key per line (include the newlines in the variable).
